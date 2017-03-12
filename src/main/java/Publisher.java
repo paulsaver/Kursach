@@ -5,12 +5,12 @@ import java.util.Set;
  * Created by Home on 11.03.2017.
  */
 public class Publisher {
-    private long id;
+    private Long id;
     private String name;
     private Date date;
     private String headquarters;
-    private Set franchises = new HashSet();
-    private Set developers = new HashSet();
+    private Set<Integer> franchises = new HashSet();
+    private Set<Integer> developers = new HashSet();
 
     public Publisher(){
     }

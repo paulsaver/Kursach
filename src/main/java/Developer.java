@@ -4,12 +4,12 @@ import java.util.Set;
  * Created by Home on 11.03.2017.
  */
 public class Developer {
-    private long id;
-    private long pub_id;
+    private Long id;
+    private Long pub_id;
     private String name;
     private String surname;
     private String position;
-    private int efficiency;
+    private Integer efficiency;
     private Set<Integer> games = new HashSet();
 
     public Developer(){

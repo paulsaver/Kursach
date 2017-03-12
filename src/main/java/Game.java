@@ -5,13 +5,13 @@ import java.util.Set;
  * Created by Home on 11.03.2017.
  */
 public class Game {
-    private long id;
-    private long franch_id;
+    private Long id;
+    private Long franch_id;
     private String title;
-    private int price;
-    private long solded;
-    private int tax;
-    private Set developers = new HashSet();
+    private Integer price;
+    private Long solded;
+    private Integer tax;
+    private Set<Integer> developers = new HashSet();
 
     public Game(){
     }
