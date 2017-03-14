@@ -10,7 +10,7 @@ public class Developer {
     private String surname;
     private String position;
     private Integer efficiency;
-    private Set<Integer> games = new HashSet();
+    private Set<Game> games = new HashSet();
 
     public Developer(){
     }
@@ -23,12 +23,12 @@ public class Developer {
         this.id = id;
     }
 
-    public long getPub_id() {
+    public long getPubId() {
         return pubId;
     }
 
-    public void setPub_id(long pub_id) {
-        this.pubId = pub_id;
+    public void setPubId(long pubId) {
+        this.pubId = pubId;
     }
 
     public String getName() {

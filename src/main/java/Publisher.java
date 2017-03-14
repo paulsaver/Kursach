@@ -9,8 +9,8 @@ public class Publisher {
     private String name;
     private Date date;
     private String headquarters;
-    private Set<Integer> franchises = new HashSet();
-    private Set<Integer> developers = new HashSet();
+    private Set<Franchise> franchises = new HashSet();
+    private Set<Developer> developers = new HashSet();
 
     public Publisher(){
     }

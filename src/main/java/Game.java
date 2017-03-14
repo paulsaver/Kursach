@@ -11,7 +11,7 @@ public class Game {
     private Integer price;
     private Long solded;
     private Integer tax;
-    private Set<Integer> developers = new HashSet();
+    private Set<Developer> developers = new HashSet();
 
     public Game(){
     }

@@ -25,11 +25,10 @@ public class Franchise {
     private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "pub_id")
-    @JoinColumn(name = "pub_id", referencedColumnName = "id")
+    @JoinColumn(name = "pub_id", foreignKey = @ForeignKey(name = "pub_id"))
     private Publisher pub;
 
-    @OneToMany(mappedBy = "franch_id", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<Game> games = new HashSet();
 
     public Franchise(){
@@ -63,7 +62,7 @@ public class Franchise {
         return pub;
     }
 
-    public void setPub_id(Publisher pub) {
+    public void setPub(Publisher pub) {
         this.pub = pub;
     }
 
