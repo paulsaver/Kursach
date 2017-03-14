@@ -6,7 +6,7 @@ import java.util.Set;
  */
 public class Game {
     private Long id;
-    private Long franch_id;
+    private Long franchId;
     private String title;
     private Integer price;
     private Long solded;
@@ -25,11 +25,11 @@ public class Game {
     }
 
     public long getFranch_id() {
-        return franch_id;
+        return franchId;
     }
 
     public void setFranch_id(long franch_id) {
-        this.franch_id = franch_id;
+        this.franchId = franch_id;
     }
 
     public String getTitle() {

@@ -5,7 +5,7 @@ import java.util.Set;
  */
 public class Developer {
     private Long id;
-    private Long pub_id;
+    private Long pubId;
     private String name;
     private String surname;
     private String position;
@@ -24,11 +24,11 @@ public class Developer {
     }
 
     public long getPub_id() {
-        return pub_id;
+        return pubId;
     }
 
     public void setPub_id(long pub_id) {
-        this.pub_id = pub_id;
+        this.pubId = pub_id;
     }
 
     public String getName() {
