@@ -1,6 +1,3 @@
-import org.hibernate.annotations.Entity;
-import org.hibernate.annotations.Table;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -10,17 +7,17 @@ import java.util.Set;
  * Created by Home on 11.03.2017.
  */
 @Entity
-@Table( appliesTo = "franchise" )
+@Table( name = "franchise" )
 public class Franchise {
     @Id
-    @Column(name = "Id")
+    @Column(name = "Id", length = 10)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "name", length = 100)
     private String name;
 
-    @Column(name = "date")
+    @Column(name = "date", length = 100)
     @Temporal(value=TemporalType.DATE)
     private Date date;
 
