@@ -1,16 +1,35 @@
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 /**
  * Created by Home on 11.03.2017.
  */
+@Entity
+@Table(name = "developer")
 public class Developer {
+    @Id
+    @Column(name = "Id", length = 10)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long pub_id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pub_id", foreignKey = @ForeignKey(name = "pub_id"))
+    private Publisher pub;
+
+    @Column(name = "name", length = 100)
     private String name;
+
+    @Column(name = "surname", length = 100)
     private String surname;
+
+    @Column(name = "position", length = 100)
     private String position;
+
+    @Column(name = "efficiency", length = 4)
     private Integer efficiency;
-    private Set<Integer> games = new HashSet();
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Game> games = new HashSet();
 
     public Developer(){
     }
@@ -23,12 +42,12 @@ public class Developer {
         this.id = id;
     }
 
-    public long getPub_id() {
-        return pub_id;
+    public Publisher getPub() {
+        return pub;
     }
 
-    public void setPub_id(long pub_id) {
-        this.pub_id = pub_id;
+    public void setPub(Publisher pub) {
+        this.pub = pub;
     }
 
     public String getName() {
