@@ -17,7 +17,7 @@ public class Publisher {
     public Publisher(){
     }
 
-    public Publisher(Long id, String name, Date date, String headquarters) {
+    public Publisher(Long id, String name, String date, String headquarters) {
         this.id = id;
         this.name = name;
         this.date = date;
@@ -40,11 +40,11 @@ public class Publisher {
         this.name = name;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
