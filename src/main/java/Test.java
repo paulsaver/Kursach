@@ -1,18 +1,29 @@
-import org.hibernate.Session;
-import util.HibernateUtil;
+import model.Publisher;
+import dao.daoPublisher;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
- * Created by overl on 16.03.2017.
+ * Created by overl on 21.03.2017.
  */
 public class Test {
     public static void main(String[] args) {
-        System.out.println("Maven + Hibernate + Oracle");
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Date now = new Date();
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+        String mysqlDateString = formatter.format(now);
 
-        session.beginTransaction();
-        Publisher publisher = new Publisher();
+        Publisher pub = new Publisher();
+        pub.setId(100);
+        pub.setName("Test Pub");
+        pub.setDate(now);
+        pub.setHeadquarters("Test headquarters");
 
-        publisher.getName();
-        session.getTransaction().commit();
+        daoPublisher.create(pub);
+
+
+        System.out.println("Publisher");
+        System.out.println("id: "+ pub.getId() + ". name: "+ pub.getName() + ". founded: "+ pub.getDate() + ". headqurters: " + pub.getHeadquarters());
     }
 }

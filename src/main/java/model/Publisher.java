@@ -1,35 +1,27 @@
-import javax.persistence.*;
+package model;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 /**
  * Created by Home on 11.03.2017.
  */
-@Entity
-@Table(name = "publisher")
 public class Publisher {
-    @Id
-    @Column(name = "Id", length = 10)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(name = "name", length = 100)
     private String name;
-
-    @Column(name = "date", length = 100)
-    @Temporal(value=TemporalType.DATE)
-    private Date date;
-
-    @Column(name = "headquarters", length = 250)
+    private String date;
     private String headquarters;
-
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Franchise> franchises = new HashSet();
-
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Developer> developers = new HashSet();
 
     public Publisher(){
+    }
+
+    public Publisher(Long id, String name, Date date, String headquarters) {
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.headquarters = headquarters;
     }
 
     public long getId() {
