@@ -8,10 +8,10 @@ import java.util.Set;
  */
 public class Game {
     private Long id;
-    private Franchise franch;
+    private Long franchId;
     private String title;
     private Integer price;
-    private Long solded;
+    private Long sold;
     private Integer tax;
     private Set<Developer> developers = new HashSet();
 
@@ -26,12 +26,12 @@ public class Game {
         this.id = id;
     }
 
-    public Franchise getFranch() {
-        return franch;
+    public Long getFranchId() {
+        return franchId;
     }
 
-    public void setFranch(Franchise franch) {
-        this.franch = franch;
+    public void setFranchId(Long franchId) {
+        this.franchId = franchId;
     }
 
     public String getTitle() {
@@ -50,12 +50,12 @@ public class Game {
         this.price = price;
     }
 
-    public long getSolded() {
-        return solded;
+    public long getSold() {
+        return sold;
     }
 
-    public void setSolded(long solded) {
-        this.solded = solded;
+    public void setSold(long sold) {
+        this.sold = sold;
     }
 
     public int getTax() {

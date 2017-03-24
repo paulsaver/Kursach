@@ -1,35 +1,33 @@
 package dao;
 
-import model.Publisher;
+import model.Developer;
 
 import java.sql.*;
 
 /**
  * Created by overl on 21.03.2017.
  */
-public class daoPublisher {
-
-    private static final String url = "jdbc:mysql://localhost:3306/mydb";
-    private static final String user = "root";
-    private static final String password = "953111";
+public class daoDeveloper {
 
     private Connection con;
     private static PreparedStatement prstmt;
     private static ResultSet rs;
 
-    public daoPublisher(Connection con){
+    public daoDeveloper(Connection con){
         this.con = con;
     }
 
-    public void create(Publisher pub){
-        String query = "insert into publisher(id,name,founded,headquarters) values(?,?,?,?)";
+    public void create(Developer dev){
+        String query = "insert into developer(id,pub_id_dev,name,surname,position,efficiency) values(?,?,?,?,?,?)";
 
         try {
             prstmt = con.prepareStatement(query);
-            prstmt.setLong(1,pub.getId());
-            prstmt.setString(2,pub.getName());
-            prstmt.setString(3,pub.getDate());
-            prstmt.setString(4,pub.getHeadquarters());
+            prstmt.setLong(1,dev.getId());
+            prstmt.setLong(2,dev.getPubIdDev());
+            prstmt.setString(3,dev.getName());
+            prstmt.setString(4,dev.getSurname());
+            prstmt.setString(5,dev.getPosition());
+            prstmt.setLong(6,dev.getEfficiency());
             prstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -41,9 +39,9 @@ public class daoPublisher {
 
     }
 
-    public Publisher select(int id){
-        Publisher pub = new Publisher();
-        String query = "select id,name,founded,headquarters from publisher where id = ?";
+    public Developer select(int id){
+        Developer dev = new Developer();
+        String query = "select id,pub_id_dev,name,surname,position,efficiency from developer where id = ?";
 
         try {
             prstmt = con.prepareStatement(query);
@@ -51,10 +49,12 @@ public class daoPublisher {
             rs = prstmt.executeQuery();
 
             if(rs.next()){
-                pub.setId(rs.getInt(1));
-                pub.setName(rs.getString(2));
-                pub.setDate(rs.getString(3));
-                pub.setHeadquarters(rs.getString(4));
+                dev.setId(rs.getInt(1));
+                dev.setPubIdDev(rs.getLong(2));
+                dev.setName(rs.getString(3));
+                dev.setSurname(rs.getString(4));
+                dev.setPosition(rs.getString(5));
+                dev.setEfficiency(rs.getInt(6));
             }
 
         } catch (SQLException e) {
@@ -65,11 +65,11 @@ public class daoPublisher {
             try { rs.close(); } catch(SQLException se) { /*can't do anything */ }
         }
 
-        return pub;
+        return dev;
     }
 
     public void delete(int id){
-        String query = "delete from publisher where id = ?";
+        String query = "delete from developer where id = ?";
 
         try {
             prstmt = con.prepareStatement(query);

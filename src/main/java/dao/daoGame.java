@@ -1,35 +1,36 @@
 package dao;
 
-import model.Publisher;
+import model.Game;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
- * Created by overl on 21.03.2017.
+ * Created by overl on 24.03.2017.
  */
-public class daoPublisher {
-
-    private static final String url = "jdbc:mysql://localhost:3306/mydb";
-    private static final String user = "root";
-    private static final String password = "953111";
+public class daoGame {
 
     private Connection con;
     private static PreparedStatement prstmt;
     private static ResultSet rs;
 
-    public daoPublisher(Connection con){
+    public daoGame(Connection con){
         this.con = con;
     }
 
-    public void create(Publisher pub){
-        String query = "insert into publisher(id,name,founded,headquarters) values(?,?,?,?)";
+    public void create(Game game){
+        String query = "insert into game(id,franch_id,title,sold,tax,price) values(?,?,?,?,?,?)";
 
         try {
             prstmt = con.prepareStatement(query);
-            prstmt.setLong(1,pub.getId());
-            prstmt.setString(2,pub.getName());
-            prstmt.setString(3,pub.getDate());
-            prstmt.setString(4,pub.getHeadquarters());
+            prstmt.setLong(1,game.getId());
+            prstmt.setLong(2,game.getFranchId());
+            prstmt.setString(3,game.getTitle());
+            prstmt.setLong(4,game.getSold());
+            prstmt.setLong(5,game.getTax());
+            prstmt.setLong(6,game.getPrice());
             prstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -41,9 +42,9 @@ public class daoPublisher {
 
     }
 
-    public Publisher select(int id){
-        Publisher pub = new Publisher();
-        String query = "select id,name,founded,headquarters from publisher where id = ?";
+    public Game select(int id){
+        Game game = new Game();
+        String query = "select id,franch_id,title,sold,tax,price from game where id = ?";
 
         try {
             prstmt = con.prepareStatement(query);
@@ -51,10 +52,12 @@ public class daoPublisher {
             rs = prstmt.executeQuery();
 
             if(rs.next()){
-                pub.setId(rs.getInt(1));
-                pub.setName(rs.getString(2));
-                pub.setDate(rs.getString(3));
-                pub.setHeadquarters(rs.getString(4));
+                game.setId(rs.getLong(1));
+                game.setFranchId(rs.getLong(2));
+                game.setTitle(rs.getString(3));
+                game.setSold(rs.getLong(4));
+                game.setTax(rs.getInt(5));
+                game.setPrice(rs.getInt(6));
             }
 
         } catch (SQLException e) {
@@ -65,11 +68,11 @@ public class daoPublisher {
             try { rs.close(); } catch(SQLException se) { /*can't do anything */ }
         }
 
-        return pub;
+        return game;
     }
 
     public void delete(int id){
-        String query = "delete from publisher where id = ?";
+        String query = "delete from game where id = ?";
 
         try {
             prstmt = con.prepareStatement(query);
@@ -83,5 +86,4 @@ public class daoPublisher {
             try { prstmt.close(); } catch(SQLException se) { /*can't do anything */ }
         }
     }
-
 }

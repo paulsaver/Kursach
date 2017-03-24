@@ -7,7 +7,7 @@ import java.util.Set;
  */
 public class Developer {
     private Long id;
-    private Publisher pub;
+    private Long pubIdDev;
     private String name;
     private String surname;
     private String position;
@@ -25,12 +25,12 @@ public class Developer {
         this.id = id;
     }
 
-    public Publisher getPub() {
-        return pub;
+    public Long getPubIdDev() {
+        return pubIdDev;
     }
 
-    public void setPub(Publisher pub) {
-        this.pub = pub;
+    public void setPubIdDev(Long pub) {
+        this.pubIdDev = pub;
     }
 
     public String getName() {

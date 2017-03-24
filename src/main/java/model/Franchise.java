@@ -10,8 +10,8 @@ import java.util.Set;
 public class Franchise {
     private Long id;
     private String name;
-    private Date date;
-    private Publisher pub;
+    private String date;
+    private Long pubIdFranch;
     private Set<Game> games = new HashSet();
 
     public Franchise(){
@@ -33,20 +33,20 @@ public class Franchise {
         this.name = name;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Publisher getPub() {
-        return pub;
+    public Long getPubIdFranch() {
+        return pubIdFranch;
     }
 
-    public void setPub(Publisher pub) {
-        this.pub = pub;
+    public void setPubIdFranch(Long pub) {
+        this.pubIdFranch = pub;
     }
 
     public Set getGames() {

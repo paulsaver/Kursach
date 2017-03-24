@@ -1,35 +1,34 @@
 package dao;
 
-import model.Publisher;
+import model.Franchise;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
- * Created by overl on 21.03.2017.
+ * Created by overl on 24.03.2017.
  */
-public class daoPublisher {
-
-    private static final String url = "jdbc:mysql://localhost:3306/mydb";
-    private static final String user = "root";
-    private static final String password = "953111";
+public class daoFranchise {
 
     private Connection con;
     private static PreparedStatement prstmt;
     private static ResultSet rs;
 
-    public daoPublisher(Connection con){
+    public daoFranchise(Connection con){
         this.con = con;
     }
 
-    public void create(Publisher pub){
-        String query = "insert into publisher(id,name,founded,headquarters) values(?,?,?,?)";
+    public void create(Franchise franch){
+        String query = "insert into franchise(id,name,founded,pub_id_franchise) values(?,?,?,?)";
 
         try {
             prstmt = con.prepareStatement(query);
-            prstmt.setLong(1,pub.getId());
-            prstmt.setString(2,pub.getName());
-            prstmt.setString(3,pub.getDate());
-            prstmt.setString(4,pub.getHeadquarters());
+            prstmt.setLong(1,franch.getId());
+            prstmt.setString(2,franch.getName());
+            prstmt.setString(3,franch.getDate());
+            prstmt.setLong(4,franch.getPubIdFranch());
             prstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -41,9 +40,9 @@ public class daoPublisher {
 
     }
 
-    public Publisher select(int id){
-        Publisher pub = new Publisher();
-        String query = "select id,name,founded,headquarters from publisher where id = ?";
+    public Franchise select(int id){
+        Franchise franch = new Franchise();
+        String query = "select id,name,founded,pub_id_franch from franchise where id = ?";
 
         try {
             prstmt = con.prepareStatement(query);
@@ -51,10 +50,10 @@ public class daoPublisher {
             rs = prstmt.executeQuery();
 
             if(rs.next()){
-                pub.setId(rs.getInt(1));
-                pub.setName(rs.getString(2));
-                pub.setDate(rs.getString(3));
-                pub.setHeadquarters(rs.getString(4));
+                franch.setId(rs.getLong(1));
+                franch.setName(rs.getString(2));
+                franch.setDate(rs.getString(3));
+                franch.setPubIdFranch(rs.getLong(4));
             }
 
         } catch (SQLException e) {
@@ -65,11 +64,11 @@ public class daoPublisher {
             try { rs.close(); } catch(SQLException se) { /*can't do anything */ }
         }
 
-        return pub;
+        return franch;
     }
 
     public void delete(int id){
-        String query = "delete from publisher where id = ?";
+        String query = "delete from franchise where id = ?";
 
         try {
             prstmt = con.prepareStatement(query);
@@ -83,5 +82,4 @@ public class daoPublisher {
             try { prstmt.close(); } catch(SQLException se) { /*can't do anything */ }
         }
     }
-
 }
