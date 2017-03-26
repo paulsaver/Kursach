@@ -82,4 +82,25 @@ public class daoFranchise {
             try { prstmt.close(); } catch(SQLException se) { /*can't do anything */ }
         }
     }
+
+    public void update(Franchise franch){
+        String query = "update franchise set id=?, name=?, founded=?, pub_id_franch=? where id=?";
+
+        try {
+            prstmt = con.prepareStatement(query);
+            prstmt.setLong(1,franch.getId());
+            prstmt.setString(2,franch.getName());
+            prstmt.setString(3,franch.getDate());
+            prstmt.setLong(4,franch.getPubIdFranch());
+            prstmt.setLong(5,franch.getId());
+            prstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try { prstmt.close(); } catch(SQLException se) { /*can't do anything */ }
+        }
+
+    }
 }

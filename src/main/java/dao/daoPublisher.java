@@ -9,10 +9,6 @@ import java.sql.*;
  */
 public class daoPublisher {
 
-    private static final String url = "jdbc:mysql://localhost:3306/mydb";
-    private static final String user = "root";
-    private static final String password = "953111";
-
     private Connection con;
     private static PreparedStatement prstmt;
     private static ResultSet rs;
@@ -74,6 +70,26 @@ public class daoPublisher {
         try {
             prstmt = con.prepareStatement(query);
             prstmt.setLong(1,id);
+            prstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try { prstmt.close(); } catch(SQLException se) { /*can't do anything */ }
+        }
+    }
+
+    public void update(Publisher pub){
+        String query = "update publisher set id=?, name=?, founded=?, headquartrers=? where id=?";
+
+        try {
+            prstmt = con.prepareStatement(query);
+            prstmt.setLong(1,pub.getId());
+            prstmt.setString(2,pub.getName());
+            prstmt.setString(3,pub.getDate());
+            prstmt.setString(4,pub.getHeadquarters());
+            prstmt.setLong(5,pub.getId());
             prstmt.executeUpdate();
 
         } catch (SQLException e) {

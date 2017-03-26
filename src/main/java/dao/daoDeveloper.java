@@ -84,4 +84,25 @@ public class daoDeveloper {
         }
     }
 
+    public void update(Developer dev){
+        String query = "update developer set id=?, pub_id_dev=?, name=?, surname=?, position=?, efficiency=? where id=?";
+
+        try {
+            prstmt = con.prepareStatement(query);
+            prstmt.setLong(1,dev.getId());
+            prstmt.setLong(2,dev.getPubIdDev());
+            prstmt.setString(3,dev.getName());
+            prstmt.setString(4,dev.getSurname());
+            prstmt.setString(5,dev.getPosition());
+            prstmt.setLong(6,dev.getEfficiency());
+            prstmt.setLong(7,dev.getId());
+            prstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try { prstmt.close(); } catch(SQLException se) { /*can't do anything */ }
+        }
+    }
 }

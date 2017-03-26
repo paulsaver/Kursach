@@ -86,4 +86,26 @@ public class daoGame {
             try { prstmt.close(); } catch(SQLException se) { /*can't do anything */ }
         }
     }
+
+    public void update(Game game){
+        String query = "update game set id=?, franch_id=?, title=?, sold=?, tax=?, price=? where id=?";
+
+        try {
+            prstmt = con.prepareStatement(query);
+            prstmt.setLong(1,game.getId());
+            prstmt.setLong(2,game.getFranchId());
+            prstmt.setString(3,game.getTitle());
+            prstmt.setLong(4,game.getSold());
+            prstmt.setLong(5,game.getTax());
+            prstmt.setLong(6,game.getPrice());
+            prstmt.setLong(7,game.getId());
+            prstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try { prstmt.close(); } catch(SQLException se) { /*can't do anything */ }
+        }
+    }
 }
